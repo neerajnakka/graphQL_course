@@ -7,16 +7,16 @@ In GraphQL, both queries and mutations are types of operations that clients can 
 
 # install and import to use graphql with apollo server
 
--- import { ApolloServer } from '@apollo/server';
--- import { startStandaloneServer } from '@apollo/server/standalone';
+ import { ApolloServer } from '@apollo/server';
+ import { startStandaloneServer } from '@apollo/server/standalone';
 
 # server creation
 
--- const server = new ApolloServer({});
+const server = new ApolloServer({});
 
 # server start and assign port
 
--- const { url } = await startStandaloneServer(server, {
+const { url } = await startStandaloneServer(server, {
 listen: { port: 4000 }, // to listen on port
 });
 
@@ -35,9 +35,8 @@ platform: [String], #array of string as there are diff platforms of games
 }
 
 # Query type definition
-
--- every graphql schema needs to have a type Query it is the entry point of the schema and specifies return end points
--- we write all our specified type definitions in the Query type
+every graphql schema needs to have a type Query it is the entry point of the schema and specifies return end points
+ we write all our specified type definitions in the Query type
 
 # resolvers : they return the data and they handle the data
 
@@ -69,23 +68,21 @@ In resolvers for GraphQL:
 
 # Relationship in data
 
--- every type can be related to some type based on natural intuition
--- and we can display all in one request instead of sending multiple request for different end points
--- this will make sure we get data in nested queries
+ every type can be related to some type based on natural intuition
+ and we can display all in one request instead of sending multiple request for different end points
+ this will make sure we get data in nested queries
 
 # In apollo sandbox : $ is variables to pass query variable
 
--- query ReviewQuery($id:ID!){
+ query ReviewQuery($id:ID!){
 Review(id:$id){
 id
 }
 }
---mutation deleteMutation($id:ID!){
+mutation deleteMutation($id:ID!){
     deleteGame(id:$id){
 id,title,platform
-
     }
-
     addGame(_, args) {
       let game = {
         ...args.game,
@@ -99,8 +96,8 @@ id,title,platform
 
 # Mutation : this is used to create or modify the database
 
--= we use type Mutation in schema
--- Adding something using mutation
+ we use type Mutation in schema
+Adding something using mutation
 type Mutation{
 addGame(game: AddGameInput!): Game,
 deleteGame(id: ID!): [Game],
@@ -110,7 +107,8 @@ title: String!,
 platform: [String!]!,
 }
 
---edit
+edit
+
 updateGame(id: ID!, edits: EditGameInput): Game,
 input EditGameInput {
 
